@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle{
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+        }
+        .center{
+            margin: 0 auto;
+        }
+        .container{
+            width: 50%;
+        }
+        .flex{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .gap{
+            gap: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center container flex gap" id="app">
+    </div>
+</body>
+<script>
+    app = document.getElementById("app")
+
+    const socket = new WebSocket("ws://localhost:8765");
+    socket.addEventListener("message", (event) => {
+        node = document.createElement("div");
+        node.className = "circle"
+        app.appendChild(node)
+    });
+</script>
+</html>
