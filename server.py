@@ -3,18 +3,6 @@ import websockets
 
 clients = set()
 
-async def client_tiker():
-    while True:
-        await asyncio.sleep(0.1)
-
-        for client in clients:
-            try:
-                print("Plus two")
-                await client.send("add")
-            except websockets.exceptions.ConnectionClosed:
-                print("Plus one")
-                pass
-
 async def conection_handler(websocket):
     try:
         clients.add(websocket)
