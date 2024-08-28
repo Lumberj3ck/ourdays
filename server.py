@@ -1,7 +1,35 @@
 import asyncio
 import websockets
+from flask import Flask, render_template, request
+
 
 clients = set()
+
+app = Flask(__name__)
+
+notes = {
+    "1": {
+        "Title": "Hello world",
+        "Description": "It is a first note"
+    },
+    "2": {
+        "Title": "Second note",
+        "Description": "It is a second note"
+    }
+}
+
+
+@app.get('/all_notes')
+def main():
+    return notes
+
+
+@app.post('/home')
+def home():
+    print(dir(request))
+    print(request.view_args)
+    return "sdf"
+
 
 async def conection_handler(websocket):
     try:
@@ -27,4 +55,4 @@ async def main():
         await asyncio.Future()
 
 
-asyncio.run(main())
+# asyncio.run(main())
